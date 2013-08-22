@@ -40,24 +40,27 @@
         </div> <!-- /home-logo (used for logo+social+signup links on left) -->
 
         <div class="span7 offset1" id="home-right">
-          <h3>Volunteer to Restore the Fourth!</h3>
+          <h3 class="text-center">Volunteer to Restore the Fourth!</h3>
           <br>
           <p>
             Join the fight against unconstitutional surveillance. We are always welcoming new volunteers of various interests and skill-sets. Whether you're interested in helping organize local events, design, development, communications, or something else, please get in touch today.
           </p>
           <br>
           <div class="well">
-            <h3 class="text-success">Yes, I want to volunteer today.</h3>
+            <h3 class="text-success text-center">Yes, I want to volunteer today.</h3>
             <br>
-            <form class="form-horizontal" id="signup-form" action="/volunteer/" method="post">
+            <form class="form-horizontal" id="volunteer-form" action="/volunteer/" method="post">
               {% csrf_token %}
               <p class="text-error">{{ form.non_field_errors }}</p>
-              <div class="row">
+              <div class="row form-panel">
 
                 <div class="control-group {% if form.name.errors %}error{% endif %}">
                   {{ form.name|label_classes:"control-label" }}
                   <div class="controls">
                     {{ form.name }}
+                    {% if form.name.errors %}
+                      <span class="help-inline text-error">{{ form.name.errors }}</span>
+                    {% endif %}
                   </div>
                 </div>
 
@@ -65,6 +68,9 @@
                   {{ form.email|label_classes:"control-label" }}
                   <div class="controls">
                     {{ form.email }}
+                    {% if form.email.errors %}
+                      <span class="help-inline text-error">{{ form.email.errors }}</span>
+                    {% endif %}
                   </div>
                 </div>
 
@@ -79,6 +85,9 @@
                   {{ form.city|label_classes:"control-label" }}
                   <div class="controls">
                     {{ form.city }}
+                    {% if form.city.errors %}
+                      <span class="help-inline text-error">{{ form.city.errors }}</span>
+                    {% endif %}
                   </div>
                 </div>
 
@@ -91,61 +100,63 @@
                 </div>
 
               </div>
-              <h4>What volunteer interests do you have?</h4>
-              <div class="row">
-                <div class="control-group">
-                  {{ form.organizing|label_classes:"control-label" }}
-                  <div class="controls controls-row">
-                    {{ form.organizing }}
-                    <span class="help-inline">{{ form.organizing.help_text }}</span>
-                  </div>
-                </div>
+              <h4 class="text-center">What volunteer interests do you have?</h4>
+              <br>
+              <div class="row form-panel">
 
-                <div class="control-group">
-                  {{ form.communications|label_classes:"control-label" }}
-                  <div class="controls controls-row">
-                    {{ form.communications }}
-                    <span class="help-inline">{{ form.communications.help_text }}</span>
+                  <div class="control-group">
+                    {{ form.organizing|label_classes:"control-label" }}
+                    <div class="controls">
+                      {{ form.organizing }}
+                      <span class="help-inline">{{ form.organizing.help_text }}</span>
+                    </div>
                   </div>
-                </div>
 
-                <div class="control-group">
-                  {{ form.design|label_classes:"control-label" }}
-                  <div class="controls controls-row">
-                    {{ form.design }}
-                    <span class="help-inline">{{ form.design.help_text }}</span>
+                  <div class="control-group">
+                    {{ form.communications|label_classes:"control-label" }}
+                    <div class="controls">
+                      {{ form.communications }}
+                      <span class="help-inline">{{ form.communications.help_text }}</span>
+                    </div>
                   </div>
-                </div>
 
-                <div class="control-group">
-                  {{ form.development|label_classes:"control-label" }}
-                  <div class="controls controls-row">
-                    {{ form.development }}
-                    <span class="help-inline">{{ form.development.help_text }}</span>
+                  <div class="control-group">
+                    {{ form.design|label_classes:"control-label" }}
+                    <div class="controls">
+                      {{ form.design }}
+                      <span class="help-inline">{{ form.design.help_text }}</span>
+                    </div>
                   </div>
-                </div>
 
-                <div class="control-group">
-                  {{ form.multimedia|label_classes:"control-label" }}
-                  <div class="controls controls-row">
-                    {{ form.multimedia }}
-                    <span class="help-inline">{{ form.multimedia.help_text }}</span>
+                  <div class="control-group">
+                    {{ form.development|label_classes:"control-label" }}
+                    <div class="controls">
+                      {{ form.development }}
+                      <span class="help-inline">{{ form.development.help_text }}</span>
+                    </div>
                   </div>
-                </div>
 
-                <div class="control-group">
-                  {{ form.other|label_classes:"control-label" }}
-                  <div class="controls controls-row">
-                    {{ form.other }}
-                    <span class="help-inline">{{ form.other.help_text }}</span>
+                  <div class="control-group">
+                    {{ form.multimedia|label_classes:"control-label" }}
+                    <div class="controls">
+                      {{ form.multimedia }}
+                      <span class="help-inline">{{ form.multimedia.help_text }}</span>
+                    </div>
                   </div>
-                </div>
+
+                  <div class="control-group">
+                    {{ form.other|label_classes:"control-label" }}
+                    <div class="controls">
+                      {{ form.other }}
+                      <span class="help-inline">{{ form.other.help_text }}</span>
+                    </div>
+                  </div>
 
               </div>
-
+              <br>
               <div class="row">
                 <div class="span3 offset2">
-                    <p class="pull-right"><button class="btn btn-primary" type="submit">Sign up</button></p>
+                  <button class="btn btn-block btn-large btn-primary" type="submit">Sign up</button>
                 </div>
               </div>
             </form>
@@ -156,16 +167,3 @@
     </div> <!-- /container -->
   </div> <!-- /masthead -->
 {% endblock %}
-
-
-{% comment %}
-{% for field in form %}
-  <div class="control-group">
-    {{ field|label_with_classes:"control-label"}}
-    <div class="controls">
-      {{ field }}<br>
-      <p class="muted">{{ field.help_text }}</p>
-    </div>
-  </div>
-{% endfor %}
-{% endcomment %}

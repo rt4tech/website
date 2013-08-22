@@ -75,8 +75,12 @@
     text-shadow: 2px 2px 2px rgb(0, 0, 0);
 }
 
-#signup-form {
+#volunteer-form {
   color: #333;
+}
+
+#volunteer-form .form-panel {
+  padding-left: 50px;
 }
 
 .featured {
