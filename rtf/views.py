@@ -1,12 +1,13 @@
 import json
 from django.db.models import Q
 from django.http import HttpResponse
-from django.template import Context, loader
+from django.template import Context, RequestContext, loader
 from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core import serializers
 from django.utils.text import slugify
 from rtf.models import Protest
+from rtf.forms import VolunteerForm
 from geopy import geocoders
 
 def protests(request):
@@ -43,3 +44,19 @@ def recalclatlong(request):
 
 def blitzio(request):
   return HttpResponse("42")
+
+def volunteer(request):
+  if request.method == 'GET':
+    # return form
+    form = VolunteerForm()
+    context = {'form': form}
+    return render(request, 'forms/volunteer.html', context)
+  elif request.method == 'POST':
+    # process form
+    form = VolunteerForm(request.POST)
+    if form.is_valid():
+      form.save()
+      return redirect('/thanks/')
+    else:
+      context = {'form': form}
+      return render(request, 'forms/volunteer.html', context)

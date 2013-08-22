@@ -22,6 +22,10 @@ urlpatterns = patterns("",
     url("^protests/recalclatlong/", views.recalclatlong, name="protests"),
     url("^protests.json/$", views.protests_json, name="protestsjson"),
 
+    # Forms
+    url("^volunteer/$", views.volunteer, name="volunteer"),
+    url("^thanks/$", direct_to_template, {'template': 'forms/thanks.html'}, name="thanks"),
+
     # Change the admin prefix here to use an alternate URL for the
     # admin interface, which would be marginally more secure.
     ("^admin/", include(admin.site.urls)),

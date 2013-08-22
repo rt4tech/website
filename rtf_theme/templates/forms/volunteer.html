@@ -1,0 +1,171 @@
+{% extends "home.html" %}
+{% load rtf_filters %}
+{% block meta_title %}Local Chapter Signup{% endblock %}
+
+{% block stage %}
+  <div class="masthead">
+    <div id="fourth-quote">
+      <div class="container">
+        <div class="row">
+          <div class="span12 featured">
+            <h1>WE’RE WORKING TO RESTORE THE FOURTH AMENDMENT:</h1>
+            <h3>“The right of the people to be secure in their persons,
+              houses, papers, and effects, against unreasonable searches and
+              seizures, shall not be violated...”</h3>
+          </div>
+        </div>
+      </div>
+    </div> <!-- /fourth-quote -->
+
+    <div class="container">
+
+      <div class="row">
+
+        <div class="span4 featured" id="home-logo">
+          <img class="logo" src="{{STATIC_URL}}img/rtf_logo.png" alt="restore the fourth logo">
+          <p>Help spread the word:</p>
+          <a class="social" href="mailto:?subject=The U.S. government is spying on you. Let's do something about it.&amp;body=Nationwide Protests to Restore the Fourth%0A%0AOn June 6th, The Guardian and The Washington Post published NSA-contractor Edward Snowden's leaks revealing the existence of PRISM, a clandestine electronic surveillance program that allows the NSA to directly access e-mail, web searches, and other Internet traffic. This program is in blatant violation of the Fourth Amendment of the U.S. Constitution, protecting us against 'unreasonable searches and seizures' and those without a warrant or probable cause.%0A%0AConcerned? You can do something. In July, thousands of people in over 50 cities across the United States will protest the unconstitutional surveillance methods employed by the U.S. government, educating other citizens on the issue and preparing an apparatus for further action.%0A%0AYou can learn more and find and sign up for your local protest at http://www.restorethefourth.net." target="_blank"><img src="{{STATIC_URL}}img/social/email.png" /></a>
+          <a class="social" id="tweet-box" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Frestorethefourth.net&text=This%20July%204th%20protests%20are%20planned%20across%20the%20country%20against%20surveillance%20%26%20to%20%40restorethefourth.%20Will%20you%20be%20there%3F&related=Restore_the4th%2Csinak" target="_blank"><img src="{{STATIC_URL}}img/social/twitter.png"/></a>
+          <br />
+          <a class="social" id="facebook" href="https://www.facebook.com/sharer/sharer.php?u=hhttp%3A%2F%2Frestorethefourth.net" target="_blank"><img src="{{STATIC_URL}}img/social/facebook.png" /></a>
+          <script type="text/javascript">
+              function openFacebook(){var e="https://www.facebook.com/sharer/sharer.php?u=hhttp%3A%2F%2Frestorethefourth.net";window.open(e,"Share on Facebook","width=626,height=436");return false}function openTwitter(){var e="https://twitter.com/intent/tweet?url=http%3A%2F%2Frestorethefourth.net&text=This%20July%204th%20protests%20are%20planned%20across%20the%20country%20against%20surveillance%20%26%20to%20%40restorethefourth.%20Will%20you%20be%20there%3F&related=Restore_the4th%2Csinak";window.open(e,"Twitter","width=550,height=420");return false}$(document).ready(function(){$("#facebook").attr("onclick","openFacebook(); return false;");$("#tweet-box").attr("onclick","openTwitter(); return false;")})
+          </script>
+          <div id="mc_embed_signup">
+              <p>Sign up for our newsletter</p>
+              <form action="http://restorethefourth.us7.list-manage2.com/subscribe/post?u=78ef7834b585d79e03ecda09a&amp;id=4ecea1236d" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate form-inline" target="_blank" novalidate>
+                      <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required> <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn">
+              </form>
+          </div>
+        </div> <!-- /home-logo (used for logo+social+signup links on left) -->
+
+        <div class="span7 offset1" id="home-right">
+          <h3>Volunteer to Restore the Fourth!</h3>
+          <br>
+          <p>
+            We are always welcoming new volunteers to Restore the Fourth<br><br>
+            Whether you're interested in helping organize local chapters, design, development, communications, or something else, please get in touch today!
+          </p>
+          <br>
+          <div class="well">
+            <h3 class="text-success">Yes, I want to volunteer today.</h3>
+            <br>
+            <form class="form-horizontal" id="signup-form" action="/volunteer/" method="post">
+              {% csrf_token %}
+              <p class="text-error">{{ form.non_field_errors }}</p>
+              <div class="row">
+
+                <div class="control-group {% if form.name.errors %}error{% endif %}">
+                  {{ form.name|label_classes:"control-label" }}
+                  <div class="controls">
+                    {{ form.name }}
+                  </div>
+                </div>
+
+                <div class="control-group {% if form.email.errors %}error{% endif %}">
+                  {{ form.email|label_classes:"control-label" }}
+                  <div class="controls">
+                    {{ form.email }}
+                  </div>
+                </div>
+
+                <div class="control-group {% if form.phone.errors %}error{% endif %}">
+                  {{ form.phone|label_classes:"control-label" }}
+                  <div class="controls">
+                    {{ form.phone }}
+                  </div>
+                </div>
+
+                <div class="control-group {% if form.city.errors %}error{% endif %}">
+                  {{ form.city|label_classes:"control-label" }}
+                  <div class="controls">
+                    {{ form.city }}
+                  </div>
+                </div>
+
+                <div class="control-group {% if form.state.errors %}error{% endif %}">
+                  {{ form.state|label_classes:"control-label" }}
+                  <div class="controls">
+                    {{ form.state }}
+                  </div>
+                </div>
+
+              </div>
+              <h4>What volunteer interests do you have?</h4>
+              <div class="row">
+                <div class="control-group">
+                  {{ form.organizing|label_classes:"control-label" }}
+                  <div class="controls controls-row">
+                    {{ form.organizing }}
+                    <span class="help-inline">{{ form.organizing.help_text }}</span>
+                  </div>
+                </div>
+
+                <div class="control-group">
+                  {{ form.communications|label_classes:"control-label" }}
+                  <div class="controls controls-row">
+                    {{ form.communications }}
+                    <span class="help-inline">{{ form.communications.help_text }}</span>
+                  </div>
+                </div>
+
+                <div class="control-group">
+                  {{ form.design|label_classes:"control-label" }}
+                  <div class="controls controls-row">
+                    {{ form.design }}
+                    <span class="help-inline">{{ form.design.help_text }}</span>
+                  </div>
+                </div>
+
+                <div class="control-group">
+                  {{ form.development|label_classes:"control-label" }}
+                  <div class="controls controls-row">
+                    {{ form.development }}
+                    <span class="help-inline">{{ form.development.help_text }}</span>
+                  </div>
+                </div>
+
+                <div class="control-group">
+                  {{ form.multimedia|label_classes:"control-label" }}
+                  <div class="controls controls-row">
+                    {{ form.multimedia }}
+                    <span class="help-inline">{{ form.multimedia.help_text }}</span>
+                  </div>
+                </div>
+
+                <div class="control-group">
+                  {{ form.other|label_classes:"control-label" }}
+                  <div class="controls controls-row">
+                    {{ form.other }}
+                    <span class="help-inline">{{ form.other.help_text }}</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="span3 offset2">
+                    <p class="pull-right"><button class="btn btn-primary" type="submit">Sign up</button></p>
+                </div>
+              </div>
+            </form>
+          </div> <!-- /form -->
+        </div> <!-- /home-right (used for featured homepage content on right) -->
+
+      </div> <!-- /row -->
+    </div> <!-- /container -->
+  </div> <!-- /masthead -->
+{% endblock %}
+
+
+{% comment %}
+{% for field in form %}
+  <div class="control-group">
+    {{ field|label_with_classes:"control-label"}}
+    <div class="controls">
+      {{ field }}<br>
+      <p class="muted">{{ field.help_text }}</p>
+    </div>
+  </div>
+{% endfor %}
+{% endcomment %}

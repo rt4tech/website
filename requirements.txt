@@ -18,3 +18,4 @@ pytz==2013b
 wsgiref==0.1.2
 geopy==0.95.1
 newrelic==1.12.0.56
+django-localflavor==1.0

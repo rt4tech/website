@@ -4,6 +4,7 @@ from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.text import slugify
 from geopy import geocoders
+from localflavor.us.us_states import US_STATES
 from time import sleep
 
 class Protest(models.Model):
@@ -76,4 +77,17 @@ class Protest(models.Model):
 @receiver(pre_save, sender=Protest)
 def pop_latlong(sender, instance, *args, **kwargs):
     instance.generateLatLong()
+
+class Volunteer(models.Model):
+    email = models.EmailField(max_length=255, blank=False, null=False)
+    name = models.CharField(max_length=255, blank=False, null=False)
+    city = models.CharField(max_length=255, blank=False, null=False)
+    state = models.CharField(max_length=2, blank=False, null=False, choices=US_STATES)
+    phone = models.CharField(max_length=10, blank=True, null=True)
+    communications = models.NullBooleanField(help_text="PR, Social Media, Communications")
+    design = models.NullBooleanField(help_text="Graphic Design for Print, Web, and other Media")
+    development = models.NullBooleanField(help_text="Frontend and backend development")
+    multimedia = models.NullBooleanField(help_text="Audio/Video skills")
+    organizing = models.NullBooleanField(help_text="Local chapter organizing")
+    other = models.CharField(max_length=255, blank=True, null=True)
 
