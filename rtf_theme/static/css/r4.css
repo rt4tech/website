@@ -57,7 +57,7 @@
 #home-logo .logo {
     margin-top: 20px;
     box-shadow: none;
-    width: 75%;
+    width: 100%;
 }
 
 #home-right {
@@ -67,7 +67,7 @@
     color: rgb(255, 255, 255);
     text-align: left;
     min-height: 485px;
-	
+
 }
 
 #home-right h2 {
