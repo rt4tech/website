@@ -43,8 +43,7 @@
           <h3>Volunteer to Restore the Fourth!</h3>
           <br>
           <p>
-            We are always welcoming new volunteers to Restore the Fourth<br><br>
-            Whether you're interested in helping organize local chapters, design, development, communications, or something else, please get in touch today!
+            Join the fight against unconstitutional surveillance. We are always welcoming new volunteers of various interests and skill-sets. Whether you're interested in helping organize local events, design, development, communications, or something else, please get in touch today.
           </p>
           <br>
           <div class="well">
@@ -86,7 +85,8 @@
                 <div class="control-group {% if form.state.errors %}error{% endif %}">
                   {{ form.state|label_classes:"control-label" }}
                   <div class="controls">
-                    {{ form.state }}
+                    {{ form.state }}<br>
+                    <span class="muted">{{ form.state.help_text }}</span>
                   </div>
                 </div>
 

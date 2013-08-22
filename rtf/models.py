@@ -82,7 +82,7 @@ class Volunteer(models.Model):
     email = models.EmailField(max_length=255, blank=False, null=False)
     name = models.CharField(max_length=255, blank=False, null=False)
     city = models.CharField(max_length=255, blank=False, null=False)
-    state = models.CharField(max_length=2, blank=False, null=False, choices=US_STATES)
+    state = models.CharField(max_length=2, blank=True, null=True, choices=US_STATES, help_text="US State if you're in the US")
     phone = models.CharField(max_length=10, blank=True, null=True)
     communications = models.NullBooleanField(help_text="PR, Social Media, Communications")
     design = models.NullBooleanField(help_text="Graphic Design for Print, Web, and other Media")
@@ -91,3 +91,5 @@ class Volunteer(models.Model):
     organizing = models.NullBooleanField(help_text="Local chapter organizing")
     other = models.CharField(max_length=255, blank=True, null=True)
 
+    def __unicode__(self):
+        return self.name
