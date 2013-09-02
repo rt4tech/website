@@ -1,3 +1,4 @@
+import re
 from django.db import models
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
@@ -83,13 +84,20 @@ class Volunteer(models.Model):
     name = models.CharField(max_length=255, blank=False, null=False)
     city = models.CharField(max_length=255, blank=False, null=False)
     state = models.CharField(max_length=2, blank=True, null=True, choices=US_STATES, help_text="US State if you're in the US")
-    phone = models.CharField(max_length=10, blank=True, null=True)
+    phone = models.CharField(max_length=10, blank=True, null=True, help_text="Numbers only")
     communications = models.NullBooleanField(help_text="PR, Social Media, Communications")
     design = models.NullBooleanField(help_text="Graphic Design for Print, Web, and other Media")
     development = models.NullBooleanField(help_text="Frontend and backend development")
     multimedia = models.NullBooleanField(help_text="Audio/Video skills")
     organizing = models.NullBooleanField(help_text="Local chapter organizing")
+    events = models.NullBooleanField(help_text="National event organizing")
     other = models.CharField(max_length=255, blank=True, null=True)
 
     def __unicode__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        # clean non-numeric characters from phone field
+        if self.phone is not None:
+            self.phone = re.compile(r'[^\d]+').sub('', self.phone)
+        super(Volunteer, self).save(*args, **kwargs)

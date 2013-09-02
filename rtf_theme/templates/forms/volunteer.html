@@ -78,6 +78,7 @@
                   {{ form.phone|label_classes:"control-label" }}
                   <div class="controls">
                     {{ form.phone }}
+                    <span class="help-inline text-error">* {{ form.phone.help_text }}</span>
                   </div>
                 </div>
 
@@ -104,53 +105,61 @@
               <br>
               <div class="row form-panel">
 
-                  <div class="control-group">
-                    {{ form.organizing|label_classes:"control-label" }}
-                    <div class="controls">
-                      {{ form.organizing }}
-                      <span class="help-inline">{{ form.organizing.help_text }}</span>
-                    </div>
+                <div class="control-group">
+                  {{ form.events|label_classes:"control-label" }}
+                  <div class="controls">
+                    {{ form.events }}
+                    <span class="help-inline">{{ form.events.help_text }}</span>
                   </div>
+                </div>
 
-                  <div class="control-group">
-                    {{ form.communications|label_classes:"control-label" }}
-                    <div class="controls">
-                      {{ form.communications }}
-                      <span class="help-inline">{{ form.communications.help_text }}</span>
-                    </div>
+                <div class="control-group">
+                  {{ form.organizing|label_classes:"control-label" }}
+                  <div class="controls">
+                    {{ form.organizing }}
+                    <span class="help-inline">{{ form.organizing.help_text }}</span>
                   </div>
+                </div>
 
-                  <div class="control-group">
-                    {{ form.design|label_classes:"control-label" }}
-                    <div class="controls">
-                      {{ form.design }}
-                      <span class="help-inline">{{ form.design.help_text }}</span>
-                    </div>
+                <div class="control-group">
+                  {{ form.communications|label_classes:"control-label" }}
+                  <div class="controls">
+                    {{ form.communications }}
+                    <span class="help-inline">{{ form.communications.help_text }}</span>
                   </div>
+                </div>
 
-                  <div class="control-group">
-                    {{ form.development|label_classes:"control-label" }}
-                    <div class="controls">
-                      {{ form.development }}
-                      <span class="help-inline">{{ form.development.help_text }}</span>
-                    </div>
+                <div class="control-group">
+                  {{ form.design|label_classes:"control-label" }}
+                  <div class="controls">
+                    {{ form.design }}
+                    <span class="help-inline">{{ form.design.help_text }}</span>
                   </div>
+                </div>
 
-                  <div class="control-group">
-                    {{ form.multimedia|label_classes:"control-label" }}
-                    <div class="controls">
-                      {{ form.multimedia }}
-                      <span class="help-inline">{{ form.multimedia.help_text }}</span>
-                    </div>
+                <div class="control-group">
+                  {{ form.development|label_classes:"control-label" }}
+                  <div class="controls">
+                    {{ form.development }}
+                    <span class="help-inline">{{ form.development.help_text }}</span>
                   </div>
+                </div>
 
-                  <div class="control-group">
-                    {{ form.other|label_classes:"control-label" }}
-                    <div class="controls">
-                      {{ form.other }}
-                      <span class="help-inline">{{ form.other.help_text }}</span>
-                    </div>
+                <div class="control-group">
+                  {{ form.multimedia|label_classes:"control-label" }}
+                  <div class="controls">
+                    {{ form.multimedia }}
+                    <span class="help-inline">{{ form.multimedia.help_text }}</span>
                   </div>
+                </div>
+
+                <div class="control-group">
+                  {{ form.other|label_classes:"control-label" }}
+                  <div class="controls">
+                    {{ form.other }}
+                    <span class="help-inline">{{ form.other.help_text }}</span>
+                  </div>
+                </div>
 
               </div>
               <br>

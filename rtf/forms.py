@@ -6,17 +6,19 @@ class VolunteerForm(forms.ModelForm):
 
     class Meta:
         model = Volunteer
-        fields = ('name',
-                  'email',
-                  'phone',
-                  'city',
-                  'state',
-                  'organizing',
-                  'communications',
-                  'design',
-                  'development',
-                  'multimedia',
-                  'other')
+        fields = (
+          'name',
+          'email',
+          'phone',
+          'city',
+          'state',
+          'organizing',
+          'communications',
+          'design',
+          'development',
+          'multimedia',
+          'other',
+          'events')
         widgets = {
             'name': forms.TextInput(attrs={'class':'input-xlarge'}),
             'email': forms.TextInput(attrs={'class':'input-xlarge'}),
@@ -27,5 +29,6 @@ class VolunteerForm(forms.ModelForm):
             'design': forms.CheckboxInput,
             'development': forms.CheckboxInput,
             'multimedia': forms.CheckboxInput,
-            'organizing': forms.CheckboxInput
+            'organizing': forms.CheckboxInput,
+            'events': forms.CheckboxInput
         }
