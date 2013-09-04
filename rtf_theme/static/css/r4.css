@@ -82,9 +82,27 @@ margin: 20px auto;
 
 }
 
-#home-right h2 {
+#home-right h2, .map-holder h2 {
   font-weight: 500;
   text-shadow: 2px 2px 2px rgb(0, 0, 0);
+}
+
+.map-holder h2 .muted {
+  color: #ccc;
+  padding-left: 10px;
+  font-size: 80%;
+}
+
+.map-holder {
+  padding-top: 10px;
+  margin-top: 30px;
+  border: 0;
+  color: #fff;
+  background-color: rgba(235, 235, 235, 0.1);
+}
+
+.chapters-well {
+  margin: 20px auto;
 }
 
 .inverse {

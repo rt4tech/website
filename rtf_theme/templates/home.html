@@ -1,6 +1,10 @@
 {% extends "fancy.html" %}
 {% load blog_tags %}
 
+{% block extra_js %}
+  <script src="//maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=true&amp;libraries=places"></script>
+{% endblock %}
+
 {% block inner_content %}
   {% blog_recent_posts 1 as recent_posts %}
   {% for blog_post in recent_posts %}
@@ -9,4 +13,25 @@
     {{blog_post.description|safe}}
     <a href="{{ blog_post.get_absolute_url }}">Read more</a>
   {% endfor %}
+{% endblock %}
+
+{% block map %}
+  <div class="row well map-holder">
+    <h2>Restore the Fourth in Your Area <span class="muted">Find your local chapter!</span></h2>
+    <div id="map" class="inverse"></div>
+  </div>
+
+  <div id="infoWindowTemplate">
+    <div class="infoWindow">
+      <div style="float: left;">
+        <img class="logo" src="{{STATIC_URL}}img/small_logo.png" alt="Restore the Fourth">
+      </div>
+      <div style="float: left; max-width: 200px;">
+        <strong>{location}</strong><br><br>
+        <a href="{info}">More Info</a>
+      </div>
+    </div>
+  </div>
+
+  {% include "maps/chapter_map.html" %}
 {% endblock %}
