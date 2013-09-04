@@ -1,0 +1,65 @@
+{% extends "fancy.html" %}
+{% block meta_title %}{{ chapter.city}}, {{ chapter.state }}{% endblock %}
+
+{% block masthead %}
+  <h1>JOIN RESTORE THE FOURTH {{ chapter.city.upper }}</h1>
+  <h3>We are taking a stand against the NSA's unconstitutional mass surveillance.</h3>
+{% endblock %}
+
+{% block content %}
+    <div class="span8 eventinfo" id="home-map">
+      {% if chapter.organizer %}
+        <div class="row">
+          <div class="span3 links">Organizer:</div>
+          <div class="span5">
+            {{ chapter.organizer }}
+          </div>
+        </div>
+      {% endif %}
+      {% if chapter.email %}
+        <div class="row">
+          <div class="span3 links">Email:</div>
+          <div class="span5">
+            {{ chapter.email }}
+          </div>
+        </div>
+      {% endif %}
+      {% if chapter.website %}
+        <div class="row">
+          <div class="span3 links">Website:</div>
+          <div class="span5 ">
+            <a href="{{chapter.website}}" target="_blank">{{ chapter.website }}</a>
+          </div>
+        </div> <!-- /row -->
+      {% endif %}
+      {% if chapter.other %}
+        <div class="row">
+          <div class="span3 links">Other:</div>
+          <div class="span5 ">
+            <a href="{{chapter.website}}" target="_blank">{{ chapter.website }}</a>
+          </div>
+        </div> <!-- /row -->
+      {% endif %}
+      {% if chapter.facebook or chapter.twitter %}
+        <div class="row social-links">
+          <div class="span3 links">Social:</div>
+          <div class="span5 ">
+            {% if chapter.facebook %}
+              <a href="{{chapter.facebook}}" target="_blank"><img src="{{STATIC_URL}}img/social/circle_fb.png" /></a>
+            {% endif %}
+            {% if chapter.twitter %}
+              <a href="{{chapter.twitter}}" target="_blank"><img src="{{STATIC_URL}}img/social/circle_tw.png" /></a>
+            {% endif %}
+          </div>
+        </div> <!-- /social-links -->
+      {% endif %}
+      {% if chapter.info %}
+        <div class="row">
+          <div class="span3">Additional Info:</div>
+          <div class="span5">
+            {{ chapter.info|safe }}
+          </div>
+        </div>
+      {% endif %}
+     </div><!-- /eventinfo -->
+{% endblock %}

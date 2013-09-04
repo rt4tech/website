@@ -1,145 +1,144 @@
 <!doctype html>
 <html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
 {% load pages_tags mezzanine_tags i18n future staticfiles %}
-    <head>
-        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-        <meta name="viewport" content="width=device-width">
-        <meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
-        <meta name="description" content="{% block meta_description %}{% endblock %}">
-        <title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
-        <link rel="shortcut icon" href="{% static "img/favicon.ico" %}">
+  <head>
+      <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width">
+      <meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+      <meta name="description" content="{% block meta_description %}{% endblock %}">
+      <title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
+      <link rel="shortcut icon" href="{% static "img/favicon.ico" %}">
 
-        {% ifinstalled mezzanine.blog %}
-            <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url "blog_post_feed" "rss" %}">
-            <link rel="alternate" type="application/atom+xml" title="Atom" href="{% url "blog_post_feed" "atom" %}">
-        {% endifinstalled %}
+      {% ifinstalled mezzanine.blog %}
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url "blog_post_feed" "rss" %}">
+        <link rel="alternate" type="application/atom+xml" title="Atom" href="{% url "blog_post_feed" "atom" %}">
+      {% endifinstalled %}
 
-        {% compress css %}
-        <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.css">
-        <link rel="stylesheet" href="{{STATIC_URL}}css/mezzanine.css">
-        <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap-responsive.css">
-        <link rel="stylesheet" href="{% static "css/r4.css" %}" type="text/css" media="screen">
-        <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap-datatables.css" type="text/css" media="screen">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+      {% compress css %}
+      <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.css">
+      <link rel="stylesheet" href="{{STATIC_URL}}css/mezzanine.css">
+      <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap-responsive.css">
+      <link rel="stylesheet" href="{% static "css/r4.css" %}" type="text/css" media="screen">
+      <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap-datatables.css" type="text/css" media="screen">
+      <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 
+      {% if LANGUAGE_BIDI %}
+        <link rel="stylesheet" href="{% static "css/rtl.css" %}">
+      {% endif %}
+
+      {% ifinstalled cartridge.shop %}
+        <link rel="stylesheet" href="{% static "css/cartridge.css" %}">
         {% if LANGUAGE_BIDI %}
-            <link rel="stylesheet" href="{% static "css/rtl.css" %}">
+          <link rel="stylesheet" href="{% static "css/cartridge.rtl.css" %}">
         {% endif %}
+      {% endifinstalled %}
 
-        {% ifinstalled cartridge.shop %}
-            <link rel="stylesheet" href="{% static "css/cartridge.css" %}">
-            {% if LANGUAGE_BIDI %}
-                <link rel="stylesheet" href="{% static "css/cartridge.rtl.css" %}">
-            {% endif %}
-        {% endifinstalled %}
+      {% block extra_css %}{% endblock %}
+      {% endcompress %}
+      {% compress js %}
+      <script src="{{STATIC_URL}}js/jquery/1.10.1/jquery.min.js"></script>
+      <script src="{{STATIC_URL}}js/datatables/jquery.dataTables.min.js"></script>
+      <script src="{{STATIC_URL}}js/datatables/bootstrap-datatables.js"></script>
+      <script src="{{STATIC_URL}}js/bootstrap.js"></script>
+      <script src="{{STATIC_URL}}js/bootstrap-extras.js"></script>
+      {% block extra_js %}{% endblock %}
+      {% endcompress %}
+      <!--[if lt IE 9]>
+      <script src="{% static "js/html5shiv.js" %}"></script>
+      <![endif]-->
 
-        {% block extra_css %}{% endblock %}
-        {% endcompress %}
-        {% compress js %}
-        <script src="{{STATIC_URL}}js/jquery/1.10.1/jquery.min.js"></script>
-        <script src="{{STATIC_URL}}js/datatables/jquery.dataTables.min.js"></script>
-        <script src="{{STATIC_URL}}js/datatables/bootstrap-datatables.js"></script>
-        <script src="{{STATIC_URL}}js/bootstrap.js"></script>
-        <script src="{{STATIC_URL}}js/bootstrap-extras.js"></script>
-        {% block extra_js %}{% endblock %}
-        {% endcompress %}
-        <!--[if lt IE 9]>
-        <script src="{% static "js/html5shiv.js" %}"></script>
-        <![endif]-->
+      {% block extra_head %}{% endblock %}
+      <!-- Piwik -->
+      <script type="text/javascript">
+        var _paq = _paq || [];
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+          var u="http://toxiccode.com/piwik/";
+          _paq.push(['setTrackerUrl', u+'piwik.php']);
+          _paq.push(['setSiteId', 1]);
+          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
+          g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+        })();
 
-        {% block extra_head %}{% endblock %}
-        <!-- Piwik -->
-        <script type="text/javascript"> 
-          var _paq = _paq || [];
-          _paq.push(['trackPageView']);
-          _paq.push(['enableLinkTracking']);
-          (function() {
-            var u="http://toxiccode.com/piwik/";
-            _paq.push(['setTrackerUrl', u+'piwik.php']);
-            _paq.push(['setSiteId', 1]);
-            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
-            g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-          })();
+      </script>
+      <noscript><p><img src="http://toxiccode.com/piwik/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
+      <!-- End Piwik Code -->
+  </head>
+  <body>
+    <div id="wrap">
+      <div class="navbar navbar-inverse navbar-fixed-top" id="rtfnav">
+        <div class="navbar-inner">
+          <div class="container">
+            <a href="/" class="brand"><img src="{{STATIC_URL}}img/rtf.jpg" alt="RESTORE THE FOURTH"></a>
+              <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </a>
+              <div class="nav-collapse">
+                {% comment %}
+                {% search_form "all" %}
+                {% endcomment %}
+                {% page_menu "pages/menus/dropdown.html" %}
+              </div>
+          </div>
+        </div>
+      </div>
 
-        </script>
-        <noscript><p><img src="http://toxiccode.com/piwik/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
-        <!-- End Piwik Code -->
-    </head>
-    <body>
-	<div id="wrap">
-		<div class="navbar navbar-inverse navbar-fixed-top" id="rtfnav">
-		    <div class="navbar-inner">
-		        <div class="container">
-              <a href="/" class="brand"><img src="{{STATIC_URL}}img/rtf.jpg" alt="RESTORE THE FOURTH"></a>
-		            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-		                <span class="icon-bar"></span>
-		                <span class="icon-bar"></span>
-		                <span class="icon-bar"></span>
-		            </a>
-		            <div class="nav-collapse">
-		                {% comment %}
-		                {% search_form "all" %}
-		                {% endcomment %}
-		                {% page_menu "pages/menus/dropdown.html" %}
-		            </div>
-		        </div>
-		    </div>
-		</div>
+      {% block message_container %}
+      <div class="container">
+        <br/>
+        {% nevercache %}
+          {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}" data-alert="alert">
+                  <a class="close" href="#" onclick="$(this).parent().fadeOut('fast'); return false;">×</a>{{ message }}
+              </div>
+          {% endfor %}
+        {% endnevercache %}
 
-		{% block message_container %}
-		<div class="container">
-            <br/>
-		    {% nevercache %}
-		    {% for message in messages %}
-		        <div class="alert alert-{{ message.tags }}" data-alert="alert">
-		            <a class="close" href="#" onclick="$(this).parent().fadeOut('fast'); return false;">×</a>{{ message }}
-		        </div>
-		    {% endfor %}
-		    {% endnevercache %}
+        <h1>{% block title %}{% endblock %}</h1>
 
-		    <h1>{% block title %}{% endblock %}</h1>
+        {% block breadcrumbs %}
+        <ul class="breadcrumb">
+          {% spaceless %}
+          {% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %}
+          {% endspaceless %}
+        </ul>
+        {% endblock %}
+      </div>
+      {% endblock %}
 
-		    {% block breadcrumbs %}
-		    <ul class="breadcrumb">
-		        {% spaceless %}
-		        {% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %}
-		        {% endspaceless %}
-		    </ul>
-		    {% endblock %}
-		</div>
-		{% endblock %}
+      {% block stage %}
+      <div class="container">
+        <div class="row">
 
-		{% block stage %}
-		<div class="container">
-		    <div class="row">
+          <div class="span9 middle">
+            {% block main %}{% endblock %}
+          </div>
 
-		        <div class="span9 middle">
-		            {% block main %}{% endblock %}
-		        </div>
-
-		        <div class="span3 right">
-		            {% nevercache %}
-		            {% include "includes/user_panel.html" %}
-		            {% endnevercache %}
-		            <div class="panel">
-		                {% block right_panel %}
-		                {% endblock %}
-		            </div>
-		        </div>
-		    </div>
-		</div>
-		{% endblock %}
-	</div>
-        <footer>
-        	<div id="footer">
-		    {% block footer %}
-		    <div class="container">
-		        {% page_menu "pages/menus/footer.html" %}
-		    </div>
-		    {% endblock %}
-            	</div>
-        </footer>
-
-        {% include "includes/footer_scripts.html" %}
-    </body>
+          <div class="span3 right">
+            {% nevercache %}
+            {% include "includes/user_panel.html" %}
+            {% endnevercache %}
+            <div class="panel">
+              {% block right_panel %}
+              {% endblock %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endblock %}
+    </div>
+    <footer>
+      <div id="footer">
+        {% block footer %}
+          <div class="container">
+            {% page_menu "pages/menus/footer.html" %}
+          </div>
+        {% endblock %}
+      </div>
+    </footer>
+    {% include "includes/footer_scripts.html" %}
+  </body>
 </html>
