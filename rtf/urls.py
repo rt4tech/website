@@ -14,13 +14,20 @@ admin.autodiscover()
 
 urlpatterns = patterns("",
 
-    #Protests page
+    # Protest pages
     url("^protests/$", views.protests, name="protests"),
-    url("^protests/(?P<protest_id>\d+)/$", views.protest_by_id, name="protest"),
-    url("^protests/(?P<state>[-\w]+)/$", views.protests_by_state, name="protest"),
-    url("^protests/(?P<state>[-\w]+)/(?P<city>[-\w]+)/$", views.protest_by_city, name="protest"),
-    url("^protests/recalclatlong/", views.recalclatlong, name="protests"),
-    url("^protests.json/$", views.protests_json, name="protestsjson"),
+    url("^protests/(?P<protest_id>\d+)/$", views.protest_by_id, name="protest_by_id"),
+    # url("^protests/(?P<state>[-\w]+)/$", views.protests_by_state, name="protests_by_state"),
+    url("^protests/(?P<state>[-\w]+)/(?P<city>[-\w]+)/$", views.protest_by_city, name="protest_by_city"),
+    url("^protests/recalclatlong/", views.protest_lat_long, name="protests_lat_long"),
+    url("^protests.json/$", views.protests_json, name="protests_json"),
+
+    # Chapter pages
+    url("^chapters/$", views.chapters, name="chapters"),
+    # url("^chapters/(?P<state>[-\w]+)/$", views.chapters_by_state, name="chapter_by_state"),
+    url("^chapters/(?P<state>[-\w]+)/(?P<city>[-\w]+)/$", views.chapter_by_city, name="chapter_by_city"),
+    url("^chapters/recalclatlong/", views.chapter_lat_long, name="chapters_lat_long"),
+    url("^chapters.json/$", views.chapters_json, name="chapters_json"),
 
     # Forms
     url("^volunteer/$", views.volunteer, name="volunteer"),

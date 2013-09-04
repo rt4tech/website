@@ -8,6 +8,7 @@ from geopy import geocoders
 from localflavor.us.us_states import US_STATES
 from time import sleep
 
+
 class Protest(models.Model):
 
     WE_HAVE_IT = 'We have it'
@@ -62,8 +63,8 @@ class Protest(models.Model):
 
     def get_absolute_url(self):
         if self.city is None:
-            return "/protests/%s/" % slugify(self.state)
-        return "/protests/%s/%s/" % (slugify(self.state), slugify(self.city))
+            return u"/protests/{0}/".format(self.state_slug)
+        return "/protests/{0}/{1}/".format(self.state_slug, self.city_slug)
 
     def to_json(self):
         return {
@@ -75,9 +76,6 @@ class Protest(models.Model):
             'longitude': self.longitude
         }
 
-@receiver(pre_save, sender=Protest)
-def pop_latlong(sender, instance, *args, **kwargs):
-    instance.generateLatLong()
 
 class Volunteer(models.Model):
     email = models.EmailField(max_length=255, blank=False, null=False)
@@ -101,3 +99,62 @@ class Volunteer(models.Model):
         if self.phone is not None:
             self.phone = re.compile(r'[^\d]+').sub('', self.phone)
         super(Volunteer, self).save(*args, **kwargs)
+
+
+class Chapter(models.Model):
+    city = models.CharField(max_length=255, blank=False, null=False)
+    state = models.CharField(max_length=2, blank=True, null=True, choices=US_STATES, help_text="US State if chapter is in the US")
+    latitude = models.FloatField(editable=False,default=0.0)
+    longitude = models.FloatField(editable=False,default=0.0)
+    organizer = models.CharField("Local Organizer", max_length=255, null=True, blank=True)
+    email = models.EmailField(max_length=255, blank=True, null=True)
+    facebook = models.URLField(max_length=255, null=True, blank=True)
+    twitter = models.URLField(max_length=255, null=True, blank=True)
+    website = models.URLField(max_length=255, null=True, blank=True)
+    other = models.URLField("Other URL", max_length=255, null=True, blank=True)
+    phone = models.CharField(max_length=10, null=True, blank=True)
+    info = models.TextField("Additional Info", blank=True, null=True)
+    state_slug = models.CharField(max_length=255, default=None, blank=True, editable=False)
+    city_slug = models.CharField(max_length=255, default=None, blank=True, editable=False)
+
+    def save(self, *args, **kwargs):
+        if self.state is not None:
+            self.state_slug = slugify(self.state)
+        if self.city is not None:
+            self.city_slug = slugify(self.city)
+        super(Chapter, self).save(*args, **kwargs)
+
+    def __unicode__(self):
+        return u"{0}, {1}".format(self.city, self.state)
+
+    def generateLatLong(self):
+        if self.latitude == 0.0 or self.longitude == 0.0:
+            g = geocoders.GoogleV3()
+            if self.city == None:
+                place, (lat, lng) = g.geocode("{0}".format(self.state), exactly_one=False)[0]
+            else:
+                place, (lat, lng) = g.geocode("{0} {1}".format(self.state, self.city), exactly_one=False)[0]
+            self.latitude = lat
+            self.longitude = lng
+            sleep(.5)
+
+    def get_absolute_url(self):
+        if self.city is None:
+            return u"/chapters/{0}/".format(self.state_slug)
+        return "/chapters/{0}/{1}/".format(self.state_slug, self.city_slug)
+
+    def to_json(self):
+        return {
+            'state': self.state,
+            'city': self.city or 'N/A',
+            'url': self.get_absolute_url(),
+            'latitude': self.latitude,
+            'longitude': self.longitude
+        }
+
+
+# Signal handling
+@receiver(pre_save)
+def pop_latlong(sender, instance, *args, **kwargs):
+    if sender in [Protest, Chapter]:
+        instance.generateLatLong()
