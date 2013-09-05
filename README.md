@@ -3,7 +3,7 @@ restorethefourth.website
 
 ### About this repo:
 
-Official repo for designing/developing the restorethefourth.net website.
+Official repo for designing/developing the restorethe4th.com website.
 For now, the basic wireframe, layout, and information will be worked on.
 
 This repo was made in direction and response with [http://www.reddit.com/r/restorethefourth/](http://www.reddit.com/r/restorethefourth/)
@@ -18,7 +18,7 @@ This is mostly command line stuff:
 If you plan on contributing code you should fork the repo, I will assume you are familiar with that process.
 
 First, make a directory for the project
-    
+
     mkdir restorethefourth
 
 Now clone the repo, it will clone into a directory named rtf, for the sake of convenience rename this directory to fourth.
@@ -42,7 +42,7 @@ Create your local_settings.py file
     cp fourth/rtf/local_settings.default fourth/rtf/local_settings.py
 
 From the "fourth" directory, create a database:
-    
+
     ./manage.py createdb
 
 Now migrate the database:
@@ -50,13 +50,13 @@ Now migrate the database:
     ./manage.py migrate rtf
 
 Now run the server:
-    
+
     ./manage.py runserver
 
 The dev site is now your browser:
 [http://localhost:8000](http://localhost:8000)
 
-You'll get a page that looks nothing like the one on restorethefourth.net. You'll need to visit [the admin panel](http://127.0.0.1:8000/admin) and add a new page. Set the slug to "/" and it should take the place of the homepage.
+You'll get a page that looks nothing like the one on restorethe4th.com. You'll need to visit [the admin panel](http://127.0.0.1:8000/admin) and add a new page. Set the slug to "/" and it should take the place of the homepage.
 
 # FAQ, Communications, Goals and Plans
 
@@ -96,7 +96,7 @@ We don't want this site to become bloated or watered down. We want to keep it si
 
 ### Current Domain Names online:
 
-* [restorethefourth.net](http://www.restorethefourth.net/)
+* [restorethe4th.com](http://www.restorethe4th.com/)
 
 ####Domain Names Available:
 

@@ -1,7 +1,10 @@
 import os
 
-ALLOWED_HOSTS = ['.restorethefourth.net',
-         '.herokuapp.com']
+ALLOWED_HOSTS = [
+    '.restorethefourth.net',
+    '.restorethe4th.com',
+     '.herokuapp.com'
+]
 ######################
 # MEZZANINE SETTINGS #
 ######################
