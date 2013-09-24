@@ -37,6 +37,8 @@ Install requirements:
 
     pip install -r fourth/requirements.txt
 
+If you get errors about pylibmc, ensure you have libmemcached installed on your system. If you get syntax errors from Python, it probably means you're using an unsupported version of Python (some requirements only work in Python 2.x).
+
 Create your local_settings.py file
 
     cp fourth/rtf/local_settings.default fourth/rtf/local_settings.py
