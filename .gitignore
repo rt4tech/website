@@ -69,3 +69,4 @@ local_settings.py
 rtf/static/
 .env
 *.dump
+config/config.yml

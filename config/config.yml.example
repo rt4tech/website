@@ -1,0 +1,20 @@
+# Basics
+hostname: localhost
+domain: restorethe4th.com
+
+# Database
+database_name: rtf_db
+database_user: db_user
+database_password: db_password
+
+# Server
+port: 7001
+memcache_location: "unix:/tmp/memcached.sock"
+
+#App
+debug: true
+secret: secret_key_goes_here
+
+# Email server
+email_host: 1.1.1.1
+email_port: 25
