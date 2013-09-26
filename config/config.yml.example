@@ -3,9 +3,9 @@ hostname: localhost
 domain: restorethe4th.com
 
 # Database
-database_name: rtf_db
-database_user: db_user
-database_password: db_password
+database_name: rtf
+database_user:
+database_password:
 
 # Server
 port: 7001
@@ -13,7 +13,11 @@ memcache_location: "unix:/tmp/memcached.sock"
 
 #App
 debug: true
-secret: secret_key_goes_here
+secret: "secret_key_goes_here"
+aws_bucket_name: "bucket_name"
+aws_cloudfront_domain: "domain_name"
+aws_access_key_id: "aws_access_key_id"
+aws_secret_access_key: "secret_access_key"
 
 # Email server
 email_host: 1.1.1.1
