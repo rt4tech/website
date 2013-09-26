@@ -1,7 +1,5 @@
 from settings import *
 
-print CONFIG
-
 ####################
 #   AWS SETTINGS   #
 ####################
