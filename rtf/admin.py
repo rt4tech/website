@@ -4,6 +4,7 @@ from rtf.models import Protest, Volunteer, Chapter
 class VolunteerAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'city', 'state', 'organizing', 'communications', 'design', 'development', 'multimedia', 'signup_date', 'contacted', 'contacted_by')
     list_filter = ('state', 'organizing', 'communications', 'design', 'development', 'multimedia', 'signup_date', 'contacted')
+    readonly_fields = ('signup_date', 'contacted_date')
 
 class ChapterAdmin(admin.ModelAdmin):
     list_display = ('city', 'state', 'email', 'website', 'organizer', 'facebook', 'twitter')
