@@ -89,6 +89,10 @@ class Volunteer(models.Model):
     multimedia = models.NullBooleanField(help_text="Audio/Video skills")
     organizing = models.NullBooleanField(help_text="Local chapter organizing")
     events = models.NullBooleanField(help_text="National event organizing")
+    signup_date = models.DateTimeField(auto_now_add=True, null=True, editable=False)
+    contacted = models.NullBooleanField(default=False)
+    contact_date = models.DateTimeField(null=True)
+
     other = models.CharField(max_length=255, blank=True, null=True)
 
     def __unicode__(self):
