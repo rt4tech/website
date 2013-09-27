@@ -4,6 +4,7 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.text import slugify
+from django.contrib.auth.models import User
 from geopy import geocoders
 from localflavor.us.us_states import US_STATES
 from time import sleep
@@ -90,8 +91,9 @@ class Volunteer(models.Model):
     organizing = models.NullBooleanField(help_text="Local chapter organizing")
     events = models.NullBooleanField(help_text="National event organizing")
     signup_date = models.DateTimeField(auto_now_add=True, null=True, editable=False)
-    contacted = models.NullBooleanField(default=False)
-    contact_date = models.DateTimeField(null=True)
+    contacted = models.BooleanField(default=False)
+    contact_date = models.DateTimeField(null=True, blank=True)
+    contacted_by = models.ForeignKey(User, null=True, blank=True)
 
     other = models.CharField(max_length=255, blank=True, null=True)
 
