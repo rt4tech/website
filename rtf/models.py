@@ -3,6 +3,7 @@ from django.db import models
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.utils import timezone
+import datetime
 from django.utils.text import slugify
 from django.contrib.auth.models import User
 from geopy import geocoders
@@ -104,6 +105,8 @@ class Volunteer(models.Model):
         # clean non-numeric characters from phone field
         if self.phone is not None:
             self.phone = re.compile(r'[^\d]+').sub('', self.phone)
+        if self.contacted and self.contacted_date is None:
+            self.contacted_date = datetime.datetime.now()
         super(Volunteer, self).save(*args, **kwargs)
 
 
