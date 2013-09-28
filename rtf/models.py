@@ -41,6 +41,7 @@ class Protest(models.Model):
     longitude = models.FloatField(editable=False,default=0.0)
     state_slug = models.CharField(max_length=255, default=None, blank=True, editable=False)
     city_slug = models.CharField(max_length=255, default=None, blank=True, editable=False)
+    featured_info = models.TextField(max_length=1000,null=True,blank=True,help_text="Featured info that will be shown at the top of the page")
 
     def save(self, *args, **kwargs):
         if self.state is not None:

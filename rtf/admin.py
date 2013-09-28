@@ -10,6 +10,10 @@ class ChapterAdmin(admin.ModelAdmin):
     list_display = ('city', 'state', 'email', 'website', 'organizer', 'facebook', 'twitter')
     list_filter = ('state',)
 
-admin.site.register(Protest)
+class ProtestAdmin(admin.ModelAdmin):
+    list_display = ('location', 'date', 'time', 'permit_status', 'confirmed')
+    list_filter = ('location', 'date', 'time', 'permit_status', 'confirmed')
+
+admin.site.register(Protest, ProtestAdmin)
 admin.site.register(Volunteer, VolunteerAdmin)
 admin.site.register(Chapter, ChapterAdmin)
