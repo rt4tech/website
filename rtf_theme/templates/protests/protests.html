@@ -29,7 +29,9 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-    $('#protest_table').dataTable();
+    $('#protest_table').dataTable({ "oLanguage": {
+        "sLengthMenu": "_MENU_ protests per page"
+    }});
 });
 </script>
 {% endblock %}
