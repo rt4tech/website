@@ -34,4 +34,9 @@ $(document).ready(function() {
     }});
 });
 </script>
+{% if showing_all = 'false' %}
+<a href="/protests/?show_all=true">Show All Protests (including expired)</a>
+{% else %}
+<a href="/protests">Show Only Upcoming Protests</a>
+{% endif %}
 {% endblock %}
