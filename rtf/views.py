@@ -9,12 +9,17 @@ from django.utils.text import slugify
 from rtf.models import Protest, Chapter
 from rtf.forms import VolunteerForm
 from geopy import geocoders
+from django.utils import timezone
 
 
 # Protests
 def protests(request):
-  protest_list = Protest.objects.all().order_by('city')
-  context = {'protest_list' : protest_list}
+  show_all = request.GET.get('show_all', 'false');
+  if(show_all is 'false'):
+    protest_list = Protest.objects.filter(date__gte = timezone.now()).order_by('city')
+  else:
+    protest_list = Protest.objects.all().order_by('city')
+  context = {'protest_list' : protest_list, 'showing_all' : show_all}
   return render(request, 'protests/protests.html', context)
 
 def protests_by_state(request, state=None):

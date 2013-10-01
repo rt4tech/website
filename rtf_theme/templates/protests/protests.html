@@ -29,7 +29,14 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-    $('#protest_table').dataTable();
+    $('#protest_table').dataTable({ "oLanguage": {
+        "sLengthMenu": "_MENU_ protests per page"
+    }});
 });
 </script>
+{% if showing_all = 'false' %}
+<a href="/protests/?show_all=true">Show All Protests (including expired)</a>
+{% else %}
+<a href="/protests">Show Only Upcoming Protests</a>
+{% endif %}
 {% endblock %}

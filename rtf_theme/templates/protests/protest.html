@@ -9,6 +9,7 @@
         <div class="span12 featured">
           <h1>JOIN THE RESTORE THE FOURTH PROTEST IN <span class="uppercase">{{protest.city.upper}}, {{protest.state.upper}}:</span></h1>
           <h3> The U.S. government is spying on its own citizens and on people around the world. <br />Join thousands across the country in protesting against unconstitutional surveillance.</h3>
+          {% if protest.featured_info %}<h3>{{protest.featured_info}}</h3>{% endif %}
         </div>
       </div>
     </div>
