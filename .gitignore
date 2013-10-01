@@ -70,3 +70,5 @@ rtf/static/
 .env
 *.dump
 config/config.yml
+log/*
+tmp/*
