@@ -276,10 +276,11 @@ DEBUG_TOOLBAR_CONFIG = {"INTERCEPT_REDIRECTS": False}
 # }
 
 # Amazon S3 settings
-try:
-    from aws_settings import *
-except ImportError:
-    pass
+if not DEBUG:
+    try:
+        from aws_settings import *
+    except ImportError:
+        pass
 
 ####################
 # DYNAMIC SETTINGS #
