@@ -85,12 +85,21 @@ class Volunteer(models.Model):
     city = models.CharField(max_length=255, blank=False, null=False)
     state = models.CharField(max_length=2, blank=True, null=True, choices=US_STATES, help_text="US State if you're in the US")
     phone = models.CharField(max_length=10, blank=True, null=True, help_text="Numbers only")
-    communications = models.NullBooleanField(help_text="PR, Social Media, Communications")
-    design = models.NullBooleanField(help_text="Graphic Design for Print, Web, and other Media")
-    development = models.NullBooleanField(help_text="Frontend and backend development")
+
+    # Working groups
+    communications = models.NullBooleanField(help_text="Communications, promotions, recruitment")
+    design = models.NullBooleanField(help_text="Design for print, web, and other media")
+    development = models.NullBooleanField('technology', help_text="Development, devops, sysadmin")
+    outreach = models.NullBooleanField(help_text="Outreach and education")
+    operations = models.NullBooleanField(help_text="Operations and organization management")
+    legislation = models.NullBooleanField(help_text="Legislative action")
+
+    # Deprecated. Retained in model for historical data.
     multimedia = models.NullBooleanField(help_text="Audio/Video skills")
     organizing = models.NullBooleanField(help_text="Local chapter organizing")
     events = models.NullBooleanField(help_text="National event organizing")
+    
+    # signup metadata
     signup_date = models.DateTimeField(auto_now_add=True, null=True, editable=False)
     contacted = models.NullBooleanField(default=False)
     contacted_date = models.DateTimeField(null=True, blank=True)

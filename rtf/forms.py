@@ -12,13 +12,13 @@ class VolunteerForm(forms.ModelForm):
           'phone',
           'city',
           'state',
-          'organizing',
           'communications',
+          'outreach',
+          'operations',
+          'legislation',
           'design',
           'development',
-          'multimedia',
-          'other',
-          'events')
+          'other')
         widgets = {
             'name': forms.TextInput(attrs={'class':'input-xlarge'}),
             'email': forms.TextInput(attrs={'class':'input-xlarge'}),
@@ -26,9 +26,10 @@ class VolunteerForm(forms.ModelForm):
             'city': forms.TextInput(attrs={'class':'input-xlarge'}),
             'state': USStateSelect,
             'communications': forms.CheckboxInput,
+            'outreach': forms.CheckboxInput,
+            'operations': forms.CheckboxInput,
+            'legislation': forms.CheckboxInput,
             'design': forms.CheckboxInput,
             'development': forms.CheckboxInput,
-            'multimedia': forms.CheckboxInput,
-            'organizing': forms.CheckboxInput,
             'events': forms.CheckboxInput
         }
